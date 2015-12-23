@@ -28,7 +28,7 @@ const appLabel = 'instant-vdom-todo'
 const todosStorageLabel = appLabel + '-items'
 var updatedTodos = localStorage.getItem(todosStorageLabel)
 if (updatedTodos) {
-  updatdTodos = JSON.parse(updatedTodos)
+  updatedTodos = JSON.parse(updatedTodos)
   Todos.items = updatedTodos
   console.log('set todos to local storage value with %d items',
     updatedTodos.length)
