@@ -1,0 +1,73 @@
+{
+  "name": "instant-vdom-todo",
+  "version": "1.0.0",
+  "description": "Example of a build time hydration for virtual dom application",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint",
+    "lint": "standard *.js src/**/*.js",
+    "build": "webpack && node hydrate-app.js",
+    "webpack": "webpack",
+    "deploy": "grunty grunt-gh-pages gh-pages deploy.json",
+    "commit": "commit-wizard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/instant-vdom-todo.git"
+  },
+  "keywords": [
+    "virtual-dom",
+    "vdom",
+    "example",
+    "hydrate",
+    "todo"
+  ],
+  "private": true,
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/instant-vdom-todo/issues"
+  },
+  "homepage": "https://github.com/bahmutov/instant-vdom-todo#readme",
+  "dependencies": {
+    "check-more-types": "2.10.0",
+    "lazy-ass": "1.3.0",
+    "tiny-toast": "1.0.1",
+    "todomvc-app-css": "2.0.3",
+    "todomvc-common": "1.0.2",
+    "vdom-to-html": "2.2.0",
+    "virtual-dom": "2.1.1"
+  },
+  "devDependencies": {
+    "css-loader": "0.23.0",
+    "extract-text-webpack-plugin": "0.9.1",
+    "fake-todos": "1.2.0",
+    "faker": "3.0.1",
+    "grunt": "0.4.5",
+    "grunt-gh-pages": "1.0.0",
+    "grunty": "0.2.0",
+    "html-to-vdom": "0.7.0",
+    "html2hscript": "1.2.2",
+    "js-beautify": "1.5.10",
+    "json-loader": "0.5.4",
+    "pre-git": "3.1.1",
+    "standard": "5.4.1",
+    "style-loader": "0.13.0",
+    "webpack": "1.12.9"
+  },
+  "config": {
+    "pre-git": {
+      "commit-msg": [
+        "simple"
+      ],
+      "pre-commit": [
+        "npm run lint",
+        "npm run test",
+        "npm run build"
+      ],
+      "pre-push": [],
+      "post-commit": [],
+      "post-merge": []
+    }
+  }
+}
