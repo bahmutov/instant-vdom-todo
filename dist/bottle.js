@@ -74,26 +74,29 @@
     .catch(onError)
 
   root.bottleService = {
-    refill: function refill (id) {
-      console.log('sending html back to the bottle service for element with id', id)
+    refill: function refill (applicationName, id) {
+      console.log('bottle-service: html for app %s element %s', applicationName, id)
+
       var el = document.getElementById(id)
       la(el, 'could not find element with id', id)
       var html = el.innerHTML
-      console.log(html)
       send({
         cmd: 'refill',
         html: html,
+        name: applicationName,
         id: id
       })
     },
-    print: function print () {
+    print: function print (applicationName) {
       send({
-        cmd: 'print'
+        cmd: 'print',
+        name: applicationName
       })
     },
-    clear: function clear () {
+    clear: function clear (applicationName) {
       send({
-        cmd: 'clear'
+        cmd: 'clear',
+        name: applicationName
       })
     }
   }

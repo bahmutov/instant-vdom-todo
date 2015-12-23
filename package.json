@@ -40,10 +40,10 @@
     "todomvc-app-css": "2.0.3",
     "todomvc-common": "1.0.2",
     "vdom-to-html": "2.2.0",
-    "virtual-dom": "2.1.1"
+    "virtual-dom": "2.1.1",
+    "bottle-service": "1.1.1"
   },
   "devDependencies": {
-    "bottle-service": "1.0.0",
     "css-loader": "0.23.0",
     "extract-text-webpack-plugin": "0.9.1",
     "fake-todos": "1.2.0",

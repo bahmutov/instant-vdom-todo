@@ -46,6 +46,8 @@
 
 	'use strict'
 
+	/* global bottleService */
+
 	__webpack_require__(1)
 	__webpack_require__(2)
 
@@ -84,6 +86,10 @@
 
 	function saveApp () {
 	  localStorage.setItem(todosStorageLabel, JSON.stringify(Todos.items))
+	  setTimeout(function () {
+	    // application has renderd itself
+	    bottleService.refill(appLabel, 'app')
+	  }, 0);
 	}
 
 	// add rendering call after data methods
@@ -93,8 +99,8 @@
 	  if (is.fn(value)) {
 	    Todos[key] = function () {
 	      const result = value.apply(Todos, arguments)
-	      saveApp()
 	      renderApp()
+	      saveApp()
 	      return result
 	    }
 	  }

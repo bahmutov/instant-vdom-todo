@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Instant</title>
+	<title>Instant TodoMVC</title>
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
@@ -16,12 +16,14 @@
     Tested in Chrome desktop.</p>
   </div>
 
-  <div id="app"></div>
+  <!-- temp hack for bottle service to find filled div -->
+  <div id="app"></div id="app">
 
   <footer class="info">
     <p>Created by <a href="http://twitter.com/bahmutov">Gleb Bahmutov</a></p>
   </footer>
 
+  <script src="bottle.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

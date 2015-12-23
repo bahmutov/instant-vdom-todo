@@ -8,15 +8,20 @@ const appMarkup = beautify(toHTML(rendered), { indent_size: 2 })
 
 function updateAppMarkup (inputFilename, outputFilename, markup) {
   const read = require('fs').readFileSync
-  const index = read(inputFilename, 'utf-8')
+  const page = read(inputFilename, 'utf-8')
 
   const write = require('fs').writeFileSync
 
-  const appId = '<div id="app">'
-  const appDiv = appId + '</div>'
-  const hydratedIndex = index.replace(appDiv, appId + '\n' + markup + '\n' + '</div>')
+  // temp hack with ID in the closing tag
+  const openTag = '<div id="app">'
+  const closeTag = '</div id="app">'
+  const appDiv = openTag + closeTag
+  if (!page.indexOf(appDiv)) {
+    throw new Error('Cannot find markup ' + appDiv + ' in the page ' + inputFilename)
+  }
+  const hydratedPage = page.replace(appDiv, openTag + '\n' + markup + '\n' + closeTag)
 
-  write(outputFilename, hydratedIndex)
+  write(outputFilename, hydratedPage)
   console.log('saved hydrated index', outputFilename)
 }
 

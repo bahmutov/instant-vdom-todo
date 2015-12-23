@@ -3,10 +3,13 @@
 /*
   This is ServiceWorker code
 */
-/* global self, Response, Promise, location, fetch */
+/* global self, Response, Promise, location, fetch, caches */
 var myName = 'bottle-service'
 console.log(myName, 'startup')
 
+// Poor man's async "localStorage" on top of Cache
+// https://developer.mozilla.org/en-US/docs/Web/API/Cache
+// TODO factor into separate module
 function dataStore () {
   return caches.open(myName + '-v1')
     .then(function (cache) {
@@ -62,10 +65,17 @@ self.addEventListener('fetch', function (event) {
               var copy = response.clone()
               return copy.text().then(function (pageHtml) {
                 console.log('inserting our html')
-                var toReplace = '<div id="' + contents.id + '"></div>'
-                var newFragment = '<div id="' + contents.id + '">\n' +
-                  contents.html + '\n</div>'
-                pageHtml = pageHtml.replace(toReplace, newFragment)
+                // HACK using id in the CLOSING TAG to find fragment
+                var toReplaceStart = '<div id="' + contents.id + '">'
+                var toReplaceFinish = '</div id="' + contents.id + '">'
+                var startIndex = pageHtml.indexOf(toReplaceStart)
+                var finishIndex = pageHtml.indexOf(toReplaceFinish)
+                if (startIndex !== -1 && finishIndex > startIndex) {
+                  console.log('found fragment')
+                  pageHtml = pageHtml.substr(0, startIndex + toReplaceStart.length) +
+                    '\n' + contents.html + '\n' +
+                    pageHtml.substr(finishIndex)
+                }
 
                 // console.log('page html')
                 // console.log(pageHtml)
@@ -77,21 +87,23 @@ self.addEventListener('fetch', function (event) {
                   }
                 }
                 return new Response(pageHtml, responseOptions)
-            })
-          } else {
+              })
+            } else {
+              return response
+            }
+          }, function notFound () {
             return response
-          }
-        }, function notFound () {
-          return response
-        })
-    })
+          })
+      })
   )
 })
 
 // use window.navigator.serviceWorker.controller.postMessage('hi')
 // to communicate with this service worker
 self.onmessage = function onMessage (event) {
-  console.log('message to bottle-service worker', event.data)
+  console.log('message to bottle-service worker cmd', event.data && event.data.cmd)
+
+  // TODO how to use application name?
 
   dataStore().then(function (store) {
     switch (event.data.cmd) {

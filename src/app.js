@@ -1,5 +1,7 @@
 'use strict'
 
+/* global bottleService */
+
 require('../node_modules/todomvc-common/base.css')
 require('../node_modules/todomvc-app-css/index.css')
 
@@ -38,6 +40,10 @@ if (updatedTodos) {
 
 function saveApp () {
   localStorage.setItem(todosStorageLabel, JSON.stringify(Todos.items))
+  setTimeout(function () {
+    // application has renderd itself
+    bottleService.refill(appLabel, 'app')
+  }, 0);
 }
 
 // add rendering call after data methods
@@ -47,8 +53,8 @@ Object.keys(Todos).forEach(function (key) {
   if (is.fn(value)) {
     Todos[key] = function () {
       const result = value.apply(Todos, arguments)
-      saveApp()
       renderApp()
+      saveApp()
       return result
     }
   }
