@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Instant TodoMVC</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <a href="https://github.com/bahmutov/instant-vdom-todo" class="github-corner"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <div class="legend">
+    <h2>Prehydrated, self-rewriting TodoMVC</h2>
+    <p>Uses <a href="https://github.com/Matt-Esch/virtual-dom">virtual-dom</a>,
+    <a href="http://glebbahmutov.com/blog/hydrate-at-build-time/">build time hydration</a> and
+    self-rewriting using <a href="https://github.com/bahmutov/bottle-service">bottle-service</a>.
+    Tested in Chrome desktop.</p>
+  </div>
+
+  <!-- temp hack for bottle service to find filled div -->
+  <div id="app">
+<section class="todoapp">
+  <header class="header">
+    <h1>todos</h1>
+    <input class="new-todo" placeholder="What needs to be done?" autofocus>
+  </header>
+  <section class="main">
+    <input class="toggle-all" type="checkbox">
+    <label for="toggle-all">Mark all as complete</label>
+    <ul class="todo-list">
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>help fix fines</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>skip exercising fines</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>sell books</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to pick principles</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>buy bird</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>tweet Node.js</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>help buy castle</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>help avoid fishing rod</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>promote principles</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to tweet distant relatives</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pick bird</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>add bird</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>skip exercising needle work</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>buy distant relatives</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>promote Italian</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to code laptop</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>fix chess</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to code bird</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>make distant relatives</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to buy fines</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>make Node.js</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>make castle</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>avoid crashing boots</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>submit books</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>skip avoiding milk</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to clean distant relatives</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>make fines</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>skip throwing milk</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>promote boots</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>play knife</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to avoid adults</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>tweet fines</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>avoid chess</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>forget adults</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pick distant relatives</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>help code knife</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>crash distant relatives</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to forget principles</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>promote Italian</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>avoid making distant relatives</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to exercise charges</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>help do castle</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>tweet Node.js</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to find fines</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>make Node.js</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to buy fishing rod</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>avoid milk</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>fix chess</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to buy Node.js</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to tweet milk</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>help promote principles</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to promote fines</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to play adults</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>fix adults</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>promote boots</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>submit knife</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>fix needle work</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>make laptop</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>play charges</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>play Italian</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>skip cleaning bird</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pick boots</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to skip bird</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to throw boots</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>clean Node.js</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>code castle</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>crash castle</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to buy adults</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to make laptop</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>avoid castle</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to fix Node.js</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>avoid throwing charges</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to tweet fishing rod</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>add castle</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>throw laptop</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to learn charges</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to skip charges</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>sell books</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>throw knife</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>help throw Node.js</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to find chess</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to add fishing rod</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>skip finding Italian</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>avoid needle work</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to code boots</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>forget adults</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>promote boots</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>avoid playing adults</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>make milk</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>fix chess</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>throw knife</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>add Italian</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>pretend to code laptop</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to avoid distant relatives</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>help learn boots</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>add needle work</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>help forget laptop</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>code fishing rod</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>try to promote laptop</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+      <li class="">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>exercise laptop</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <footer class="footer"><span class="todo-count"><strong>100</strong> items left</span>
+    <ul class="filters">
+      <li><a class="selected" href="#/">All</a></li>
+      <li><a class="" href="#/active">Active</a></li>
+      <li><a class="" href="#/completed">Completed</a></li>
+    </ul>
+    <button class="clear-completed" style="display: none;">Clear completed</button>
+  </footer>
+</section>
+</div id="app">
+
+  <footer class="info">
+    <p>Created by <a href="http://twitter.com/bahmutov">Gleb Bahmutov</a></p>
+  </footer>
+
+  <script src="bottle.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
