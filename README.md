@@ -3,6 +3,11 @@
 
 [![Build status][instant-vdom-todo-ci-image] ][instant-vdom-todo-ci-url]
 
+[live demo](https://instant-todo.herokuapp.com/)
+
+Uses [bottle-service](https://github.com/bahmutov/bottle-service) 
+to enable HTML rewriting on page load.
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015
