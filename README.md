@@ -13,6 +13,17 @@ to enable HTML rewriting on page load.
 Read the [Instant web application](http://glebbahmutov.com/blog/instant-web-application/)
 blog post.
 
+## Browser support
+
+### Chrome 
+
+* Nothing to do, `ServiceWorker` should be enabled by default
+
+### Firefox
+
+* Open 'about:config'
+* Turn on 'dom.serviceWorkers.enabled' setting
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015

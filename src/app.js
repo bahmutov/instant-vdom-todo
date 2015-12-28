@@ -68,9 +68,11 @@ function renderApp () {
   prevView = view
 }
 
-console.log('initial render')
-renderApp()
-tinyToast.show('Rendered web app')
-tinyToast.hide(2000)
+console.log('initial render after 500ms delay')
+setTimeout(function () {
+  renderApp()
+  tinyToast.show('Rendered web app after 500ms delay')
+  tinyToast.hide(2000)
+}, 500)
 
 window.renderApp = renderApp
