@@ -22,7 +22,8 @@ blog post.
 ### Firefox
 
 * Open 'about:config'
-* Turn on 'dom.serviceWorkers.enabled' setting
+* Set the 'dom.serviceWorkers.enabled' setting to "true"
+* Set the 'dom.serviceWorkers.interception.enabled' setting to "true"
 
 ### Small print
 
