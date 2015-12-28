@@ -3,10 +3,15 @@
 
 [![Build status][instant-vdom-todo-ci-image] ][instant-vdom-todo-ci-url]
 
-[live demo](https://instant-todo.herokuapp.com/)
+[live demo](https://instant-todo.herokuapp.com/),
+[screen recording of the demo](https://youtu.be/KRVoibtht84) - notice that
+I reload the page multiple times, but the app appears instantly.
 
 Uses [bottle-service](https://github.com/bahmutov/bottle-service) 
 to enable HTML rewriting on page load.
+
+Read the [Instant web application](http://glebbahmutov.com/blog/instant-web-application/)
+blog post.
 
 ### Small print
 
