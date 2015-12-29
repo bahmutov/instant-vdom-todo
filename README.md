@@ -15,7 +15,7 @@ blog post.
 
 ## Browser support
 
-### Chrome 
+### Chrome, Opera 
 
 * Nothing to do, `ServiceWorker` should be enabled by default
 
