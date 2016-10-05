@@ -38,7 +38,8 @@
   }
 
   var serviceScriptUrl = getCurrentScriptFolder() + 'bottle-service.js'
-  var scope = '/'
+  // assume we are running at <domain>/pathname
+  var scope = window.location.pathname
 
   var send = function mockSend () {
     console.error('Bottle service not initialized yet')
@@ -79,7 +80,7 @@
 
       var el = document.getElementById(id)
       la(el, 'could not find element with id', id)
-      var html = el.innerHTML
+      var html = el.innerHTML.trim()
       send({
         cmd: 'refill',
         html: html,

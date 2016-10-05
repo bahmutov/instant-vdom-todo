@@ -12,7 +12,10 @@ module.exports = {
     loaders: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader'
+        })
       },
       {
         test: /\.json$/,
@@ -23,7 +26,9 @@ module.exports = {
 }
 
 module.exports.plugins = [
-  new ExtractTextPlugin('app.css', {
+  new ExtractTextPlugin({
+    filename: 'app.css',
+    disable: false,
     allChunks: true
   })
 ]
