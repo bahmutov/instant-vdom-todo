@@ -7,7 +7,7 @@
 [screen recording of the demo](https://youtu.be/KRVoibtht84) - notice that
 I reload the page multiple times, but the app appears instantly.
 
-Uses [bottle-service](https://github.com/bahmutov/bottle-service) 
+Uses [bottle-service](https://github.com/bahmutov/bottle-service)
 to enable HTML rewriting on page load.
 
 Read the [Instant web application](http://glebbahmutov.com/blog/instant-web-application/)
@@ -15,7 +15,7 @@ blog post.
 
 ## Browser support
 
-### Chrome, Opera 
+### Chrome, Opera
 
 * Nothing to do, `ServiceWorker` should be enabled by default
 
@@ -65,5 +65,5 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-[instant-vdom-todo-ci-image]: https://travis-ci.org/bahmutov/instant-vdom-todo.png?branch=master
+[instant-vdom-todo-ci-image]: https://travis-ci.org/bahmutov/instant-vdom-todo.svg?branch=master
 [instant-vdom-todo-ci-url]: https://travis-ci.org/bahmutov/instant-vdom-todo
